@@ -6,6 +6,17 @@ source "$SRC_DIR/scripts/utils/build_utils.sh" || return 1
 
 KERNEL_BINS="dt dtbo init_boot vendor_boot"
 PARTITIONS_LIST="system vendor product system_ext odm vendor_dlkm odm_dlkm system_dlkm"
+
+_GET_PARTITION_SIZE()
+{
+    local PARTITION_NAME="$1"
+
+    local PARTITION_SIZE
+    PARTITION_SIZE="TARGET_$(tr "[:lower:]" "[:upper:]" <<< "$PARTITION_NAME")_PARTITION_SIZE"
+    _CHECK_NON_EMPTY_PARAM "$PARTITION_SIZE" "${!PARTITION_SIZE//none/}" || return 1
+
+    echo -n "${!PARTITION_SIZE}"
+}
 # ]
 
 # GET_DEVICE_FROM_MOUNTPOINT <mountpoint>
@@ -15,9 +26,6 @@ GET_DEVICE_FROM_MOUNTPOINT()
     _CHECK_NON_EMPTY_PARAM "MOUNTPOINT" "$1" || return 1
 
     local MOUNTPOINT="$1"
-    if [[ "$MOUNTPOINT" == "/dt" ]]; then
-        MOUNTPOINT="/dtb"
-    fi
 
     local FSTAB_FILE="$SRC_DIR/target/$TARGET_CODENAME/installer/recovery.fstab"
     if [ ! -f "$FSTAB_FILE" ]; then
@@ -29,25 +37,31 @@ GET_DEVICE_FROM_MOUNTPOINT()
     fi
     if [ ! -f "$FSTAB_FILE" ]; then
         LOGW "File not found: target/$TARGET_CODENAME/installer/recovery.fstab"
-        return 1
+        exit 1
     fi
 
-    local FILESYSTEM
-    FILESYSTEM="$(grep -w "$MOUNTPOINT" "$FSTAB_FILE")"
-    FILESYSTEM="$(sed "/^#/d" <<< "$FILESYSTEM")"
-    FILESYSTEM="$(head -n 1 <<< "$FILESYSTEM")"
-    FILESYSTEM="$(cut -f 1 <<< "$FILESYSTEM" | cut -f 1 -d " ")"
+    if $TARGET_USE_DYNAMIC_PARTITIONS && IS_VALID_PARTITION_NAME "${MOUNTPOINT/\//}"; then
+        echo -n "map_partition(\"${MOUNTPOINT/\//}\")"
+    else
+        local FILESYSTEM
+        FILESYSTEM="$(grep -w "$MOUNTPOINT" "$FSTAB_FILE")"
+        FILESYSTEM="$(sed "/^#/d" <<< "$FILESYSTEM")"
+        FILESYSTEM="$(head -n 1 <<< "$FILESYSTEM")"
+        FILESYSTEM="$(cut -f 1 <<< "$FILESYSTEM" | cut -f 1 -d " ")"
 
-    if [ ! "$FILESYSTEM" ]; then
-        if [[ "$MOUNTPOINT" == "/system" ]]; then
-            GET_DEVICE_FROM_MOUNTPOINT "/"
-        else
-            LOGW "No entry for \"$MOUNTPOINT\" found in target fstab"
-            return 1
+        if [ ! "$FILESYSTEM" ]; then
+            if [[ "$MOUNTPOINT" == "/dt" ]]; then
+                GET_DEVICE_FROM_MOUNTPOINT "/dtb"
+            elif [[ "$MOUNTPOINT" == "/system" ]]; then
+                GET_DEVICE_FROM_MOUNTPOINT "/"
+            else
+                LOGW "No entry for \"$MOUNTPOINT\" found in target fstab"
+                exit 1
+            fi
         fi
-    fi
 
-    echo -n "\"$FILESYSTEM\""
+        echo -n "\"$FILESYSTEM\""
+    fi
 }
 
 # PRINT_ASSERTIONS <info>
@@ -198,14 +212,12 @@ SIGN_IMAGE_WITH_AVB()
         PARTITION_NAME="$(basename "$FILE")"
         PARTITION_NAME="${PARTITION_NAME//.img/}"
 
-        local PARTITION_SIZE
-        PARTITION_SIZE="TARGET_$(tr "[:lower:]" "[:upper:]" <<< "$PARTITION_NAME")_PARTITION_SIZE"
-        _CHECK_NON_EMPTY_PARAM "$PARTITION_SIZE" "${!PARTITION_SIZE//none/}" || return 1
+        _GET_PARTITION_SIZE "$PARTITION_NAME" > /dev/null || return 1
 
         local CMD
         CMD+="avbtool add_hash_footer "
         CMD+="--image \"$FILE\" "
-        CMD+="--partition_size \"${!PARTITION_SIZE}\" "
+        CMD+="--partition_size \"$(_GET_PARTITION_SIZE "$PARTITION_NAME")\" "
         CMD+="--partition_name \"$PARTITION_NAME\" "
         CMD+="--hash_algorithm \"sha256\" "
         CMD+="--algorithm \"SHA256_RSA4096\" "
