@@ -13,3 +13,8 @@ system/app/WifiRROverlayAppLls
 PRODUCT_DEBLOAT+="
 overlay/SoftapOverlayQC
 "
+
+# GameDriver
+SYSTEM_DEBLOAT+="
+system/priv-app/GameDriver-EX2200
+"
