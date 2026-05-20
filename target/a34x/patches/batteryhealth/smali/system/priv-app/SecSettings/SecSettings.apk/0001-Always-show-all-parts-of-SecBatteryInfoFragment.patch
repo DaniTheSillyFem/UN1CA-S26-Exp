@@ -3,18 +3,18 @@ From: Fede2782 <78815152+Fede2782@users.noreply.github.com>
 Date: Sun, 19 Apr 2026 15:36:21 +0200
 Subject: [PATCH] Always show all parts of SecBatteryInfoFragment
 
-Adapted for S26 Base / One UI 8.5 SecSettings where
+Adapted for S26 / One UI 8.5 SecSettings where
 SecBatteryInfoFragment moved from smali_classes4 to smali_classes5.
 
 ---
- .../batteryinfo/SecBatteryInfoFragment.smali  | 63 +------------------
- 1 file changed, 1 insertion(+), 62 deletions(-)
+ .../batteryinfo/SecBatteryInfoFragment.smali  | 87 +-------------------------
+ 1 file changed, 1 insertion(+), 86 deletions(-)
 
 diff --git a/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali b/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
 index 00000000..00000000 100644
 --- a/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
 +++ b/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
-@@ -400,22 +400,7 @@
+@@ -400,31 +400,7 @@
      .line 1
      sget-object v0, Lcom/samsung/android/settings/Rune;->COMMON_CONFIG_PACKAGE_NAME_SMART_MANAGER:Ljava/lang/String;
  
@@ -47,7 +47,7 @@ index 00000000..00000000 100644
  
      .line 16
      const/4 v1, 0x1
-@@ -681,52 +666,6 @@
+@@ -681,61 +657,5 @@
      .line 42
      .line 43
 -    const-string/jumbo v0, "ro.product.model"
