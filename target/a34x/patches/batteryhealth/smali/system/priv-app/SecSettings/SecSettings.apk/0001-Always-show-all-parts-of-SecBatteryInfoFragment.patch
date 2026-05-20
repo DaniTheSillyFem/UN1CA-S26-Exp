@@ -3,69 +3,111 @@ From: Fede2782 <78815152+Fede2782@users.noreply.github.com>
 Date: Sun, 19 Apr 2026 15:36:21 +0200
 Subject: [PATCH] Always show all parts of SecBatteryInfoFragment
 
----
- .../batteryinfo/SecBatteryInfoFragment.smali  | 41 +------------------
- 1 file changed, 2 insertions(+), 39 deletions(-)
+Adapted for S26 Base / One UI 8.5 SecSettings where
+SecBatteryInfoFragment moved from smali_classes4 to smali_classes5.
 
-diff --git a/smali_classes4/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali b/smali_classes4/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
-index 7c8b830d..3a3ed6e6 100644
---- a/smali_classes4/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
-+++ b/smali_classes4/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
-@@ -226,18 +226,8 @@
-     .locals 4
- 
+---
+ .../batteryinfo/SecBatteryInfoFragment.smali  | 63 +------------------
+ 1 file changed, 1 insertion(+), 62 deletions(-)
+
+diff --git a/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali b/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
+index 00000000..00000000 100644
+--- a/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
++++ b/smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryInfoFragment.smali
+@@ -400,22 +400,7 @@
+     .line 1
      sget-object v0, Lcom/samsung/android/settings/Rune;->COMMON_CONFIG_PACKAGE_NAME_SMART_MANAGER:Ljava/lang/String;
--
+ 
+-    .line 2
+-    .line 3
 -    const-string/jumbo v0, "ro.product.model"
 -
+-    .line 4
+-    .line 5
+-    .line 6
 -    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 -
+-    .line 7
+-    .line 8
+-    .line 9
 -    move-result-object v0
 -
+-    .line 10
 -    const-string v1, "SM-A236B"
 -
+-    .line 11
+-    .line 12
 -    invoke-virtual {v1, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
 -
+-    .line 13
+-    .line 14
+-    .line 15
 -    move-result v0
-+
 +    const/4 v0, 0x1
  
+     .line 16
      const/4 v1, 0x1
- 
-@@ -375,33 +365,6 @@
- 
-     sget-object v0, Lcom/samsung/android/settings/Rune;->COMMON_CONFIG_PACKAGE_NAME_SMART_MANAGER:Ljava/lang/String;
- 
+@@ -681,52 +666,6 @@
+     .line 42
+     .line 43
 -    const-string/jumbo v0, "ro.product.model"
 -
+-    .line 44
+-    .line 45
+-    .line 46
 -    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 -
+-    .line 47
+-    .line 48
+-    .line 49
 -    move-result-object v0
 -
+-    .line 50
 -    const-string v2, "SM-A236B"
 -
+-    .line 51
+-    .line 52
 -    invoke-virtual {v2, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
 -
+-    .line 53
+-    .line 54
+-    .line 55
 -    move-result v0
 -
+-    .line 56
 -    if-eqz v0, :cond_0
 -
--    const v0, 0x7f0a0688
+-    .line 57
+-    .line 58
+-    const v0, 0x7f0b06dc
 -
+-    .line 59
+-    .line 60
+-    .line 61
 -    invoke-virtual {p0, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 -
+-    .line 62
+-    .line 63
+-    .line 64
 -    move-result-object v0
 -
+-    .line 65
 -    check-cast v0, Landroid/widget/LinearLayout;
 -
+-    .line 66
+-    .line 67
 -    const/16 v2, 0x8
 -
+-    .line 68
+-    .line 69
 -    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setVisibility(I)V
 -
+-    .line 70
+-    .line 71
+-    .line 72
 -    :cond_0
      invoke-virtual {p1, p0}, Landroidx/appcompat/app/AlertDialog$Builder;->setView(Landroid/view/View;)V
  
-     invoke-virtual {p1}, Landroidx/appcompat/app/AlertDialog$Builder;->create()Landroidx/appcompat/app/AlertDialog;
+     .line 73
 -- 
 2.53.0
-
