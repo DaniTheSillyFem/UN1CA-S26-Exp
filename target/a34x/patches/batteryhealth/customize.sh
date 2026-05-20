@@ -8,13 +8,13 @@
 # Always enable BatteryRegulatoryPreferenceController
 # Normally this checks for auth support or if target is SM-A236B
 SMALI_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
-    "smali_classes4/com/samsung/android/settings/deviceinfo/batteryinfo/BatteryRegulatoryPreferenceController.smali" "return" \
+    "smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/BatteryRegulatoryPreferenceController.smali" "return" \
      "getAvailabilityStatus()I" \
      "0x0"
 
 # Always enable SecBatteryFirstUseDataPreferenceController
 # Normally this checks if target is NOT SM-A236B and for auth support
 SMALI_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
-    "smali_classes4/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryFirstUseDatePreferenceController.smali" "return" \
+    "smali_classes5/com/samsung/android/settings/deviceinfo/batteryinfo/SecBatteryFirstUseDatePreferenceController.smali" "return" \
      "getAvailabilityStatus()I" \
      "0x0"
