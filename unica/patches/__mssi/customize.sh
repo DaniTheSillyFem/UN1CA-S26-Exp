@@ -68,18 +68,6 @@ ADD_JAR_TO_CLASSPATH()
 }
 # ]
 
-ADD_IF_EXISTS()
-{
-    local fw_loc="$1"
-    local partition="$2"
-    local file="$3"
-    if [ -f "$fw_loc/$partition/$file" ]; then
-        ADD_TO_WORK_DIR "$fw_loc" "$partition" "$file"
-    else
-        LOGW "File or lib named \"$file\" is missing, Skipping."
-    fi
-}
-
 if [[ "$SOURCE_EXTRA_FIRMWARES" != "SM-A346"* ]]; then
     LOGE "- Unsupported firmware for MediaTek Compatibility Module"
     exit 1
