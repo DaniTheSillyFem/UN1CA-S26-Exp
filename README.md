@@ -2,22 +2,16 @@
   <img loading="lazy" src="readme-res/banner.png"/>
 </h1>
 <p align="center">
-  <a href="https://github.com/salvogiangri/UN1CA/blob/sixteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/salvogiangri/UN1CA?style=for-the-badge&logo=github"/></a>
-  <a href="https://github.com/salvogiangri/UN1CA/commits/sixteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/salvogiangri/UN1CA/sixteen?style=for-the-badge"/></a>
-  <a href="https://github.com/salvogiangri/UN1CA/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/salvogiangri/UN1CA?style=for-the-badge"/></a>
-  <a href="https://github.com/salvogiangri/UN1CA/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/salvogiangri/UN1CA/build.yml?style=for-the-badge"/></a>
+  <a href="https://github.com/DaniTheSillyFem/TWOSIXER/blob/main/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/DaniTheSillyFem/TWOSIXER?style=for-the-badge&logo=github"/></a>
+  <a href="https://github.com/DaniTheSillyFem/TWOSIXER/commits/main"><img loading="lazy" src="https://img.shields.io/github/last-commit/DaniTheSillyFem/TWOSIXER/main?style=for-the-badge"/></a>
+  <a href="https://github.com/DaniTheSillyFem/TWOSIXER/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/DaniTheSillyFem/TWOSIXER?style=for-the-badge"/></a>
+  <a href="https://github.com/DaniTheSillyFem/TWOSIXER/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/DaniTheSillyFem/TWOSIXER/build.yml?style=for-the-badge"/></a>
   <a href="https://crowdin.com/project/UN1CA"><img loading="lazy" src="https://img.shields.io/badge/Crowdin-263238?style=for-the-badge&logo=crowdin"/></a>
 </p>
-<p align="center">UN1CA <i>(/ˈu.ni.ka/)</i> is a work-in-progress custom firmware for Samsung Galaxy devices.</p>
+<p align="center">2WO6IXER <i>(pronounced "two sixer")</i> is a work-in-progress custom firmware for Samsung Galaxy devices.</p>
 
-<p align="center">
-  <a href="https://github.com/salvogiangri/UN1CA/discussions">🚀 Discussions</a>
-  •
-  <a href="https://t.me/unicarom">💬 Telegram</a>
-</p>
-
-# What is UN1CA?
-UN1CA is a work-in-progress custom firmware for Samsung Galaxy devices, designed to provide a refined, optimized and more rich One UI experience.
+# What is 2WO6IXER?
+2WO6IXER is a work-in-progress custom firmware for Samsung Galaxy devices, designed to provide a refined, optimized and more rich One UI experience.
 It is based on the latest and greatest iteration of Samsung's UX and it integrates numerous improvements, optimizations and exclusive features.
 
 The UN1CA build system automatically builds the required tools, downloads and extracts firmware components, applies the required patches and generates a flashable zip for the target device.
@@ -28,9 +22,9 @@ Any form of contribution, suggestions, bug report or feature request for the pro
 
 # Features
 ### Core features:
-- Based on the latest stable Galaxy S22 firmware
+- Based on the latest stable Galaxy S26 firmware
 - EROFS powered
-- Galaxy S25 wallpapers/sounds included
+- Galaxy S26 wallpapers/sounds included
 - Galaxy AI support
   - Audio eraser
   - Browsing assist
@@ -43,6 +37,7 @@ Any form of contribution, suggestions, bug report or feature request for the pro
   - Semantic search
   - Transcript assist
   - Writing assist
+  - Now nudge
 - High end animations
 - Native/live blur support*
 - AOD clock transition support
@@ -94,10 +89,12 @@ This project is licensed under the terms of the [GNU General Public License v3.0
 - [platform_build](https://android.googlesource.com/platform/build/) (ext4_utils, f2fs_utils, signapk), licensed under the [Apache License 2.0](https://source.android.com/docs/setup/about/licenses)
 
 # Contributors
-<a href="https://github.com/salvogiangri/UN1CA/graphs/contributors"><img loading="lazy" src="https://contrib.rocks/image?repo=salvogiangri/UN1CA"/></a>
+<a href="https://github.com/DaniTheSillyFem/TWOSIXER/graphs/contributors"><img loading="lazy" src="https://contrib.rocks/image?repo=DaniTheSillyFem/TWOSIXER"/></a>
 
 # Credits
 A special thanks goes to the following for their invaluable contributions in no particular order:
+- **[UN1CA](https://github.com/salvogiangri/UN1CA)** itself for the core patches and build system :3
+- **[Quantum-A-TR](https://github.com/Quantum-A-TR)** for the a34x target
 - **[ShaDisNX255](https://github.com/ShaDisNX255)** for his help, time and for his [NcX ROM](https://github.com/ShaDisNX255/NcX_Stock) which inspired this project
 - **[DavidArsene](https://github.com/DavidArsene)** for his help and time
 - **[paulowesll](https://github.com/paulowesll)** for his help and support
