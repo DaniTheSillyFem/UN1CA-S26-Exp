@@ -211,7 +211,7 @@ for lib in $VEX_32_LIBS; do
 done
 
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "system/lib64/libsec_camerax_util_jni.camera.samsung.so"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "system/lib/libsec_camerax_util_jni.camera.samsung.so"
+ADD_IF_EXISTS "$SOURCE_FIRMWARE" "system" "system/lib/libsec_camerax_util_jni.camera.samsung.so"
 {
     echo "libsec_camerax_util_jni.camera.samsung.so"
 } >> "$WORK_DIR/system/system/etc/public.libraries-camera.samsung.txt"
@@ -231,9 +231,11 @@ system/lib64/libSceneDetector_v1.camera.samsung.so
 system/lib64/libimage_enhancement.arcsoft.so
 system/lib64/libdualcam_portraitlighting_gallery_360.so
 system/lib64/libtensorflowLite.camera.samsung.so
+system/lib64/libtensorflowlite_c.camera.samsung.so
 system/lib64/libMyFilter.camera.samsung.so
 system/lib64/libtensorflowlite_inference_api.camera.samsung.so
 system/lib64/libtensorflowLite2_11_0_dynamic_camera.so
+system/lib64/libtensorflowlite_c.2.16.1.camera.samsung.so
 system/lib64/libLttEngine.camera.samsung.so
 system/lib64/libAuraRenderer.graphics.samsung.so
 system/lib64/libDocShadowRemoval.arcsoft.so
@@ -267,7 +269,7 @@ system/lib64/libsuperresolution_raw.arcsoft.so
 system/lib64/libsuperresolutionraw_wrapper_v2.camera.samsung.so
 "
 for lib in $LIBS; do
-    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$lib"
+    ADD_IF_EXISTS "$SOURCE_FIRMWARE" "system" "$lib"
 done
 
 LIBS="
@@ -427,5 +429,5 @@ LOG_STEP_OUT
 APPLY_PATCH "system" "system/framework/framework.jar" "$MODPATH/pictureQuality/framework.jar/0001-Implement-MTK-PictureQuality.patch"
 APPLY_PATCH "system" "system/framework/services.jar" "$MODPATH/pictureQuality/services.jar/0001-Implement-MTK-PictureQuality.patch"
 
-unset MODEL REGION FTP VEX_LIBS LIBS
+unset MODEL REGION FTP VEX_32_LIBS VEX_64_LIBS LIBS
 unset -f ADD_JAR_TO_CLASSPATH
