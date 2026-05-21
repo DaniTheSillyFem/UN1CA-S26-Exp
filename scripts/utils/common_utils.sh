@@ -403,7 +403,7 @@ ADD_TO_WORK_DIR()
 # - a string with the product name of the desidered device's prebuilt blobs (the folder MUST exist under `prebuilts/samsung`)
 #
 # `user`/`group`/`mode`/`label`/ arguments can be omitted as long as the respective entry is present in `source`/fs_config and `source`/file_context.
-ADD_TO_WORK_DIR()
+ADD_IF_EXISTS()
 {
     _CHECK_NON_EMPTY_PARAM "SOURCE" "$1" || return 1
     _CHECK_NON_EMPTY_PARAM "PARTITION" "$2" || return 1
