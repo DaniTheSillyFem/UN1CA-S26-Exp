@@ -74,7 +74,7 @@ ADD_IF_EXISTS()
     if [ -f "$SOURCE_FIRMWARE/$file" ]; then
         ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$file"
     else
-        echo "Skipping missing $file"
+        LOGW "File or lib named \"$file\" missing, Skipping."
     fi
 }
 
