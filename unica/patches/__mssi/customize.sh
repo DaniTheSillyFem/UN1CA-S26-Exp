@@ -206,6 +206,7 @@ for lib in $VEX_64_LIBS; do
 done
 
 VEX_32_LIBS="
+system/lib/libandroid.vexfwk.samsung.so
 system/lib/libcommon-jni.vexfwk.samsung.so
 system/lib/libimgproc.vexfwk.samsung.so
 system/lib/libmetadata.vexfwk.samsung.so
