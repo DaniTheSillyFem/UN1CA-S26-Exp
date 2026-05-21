@@ -427,7 +427,6 @@ ADD_IF_EXISTS()
 
     if [ ! -d "$SOURCE" ]; then
         LOGW "Folder not found: ${SOURCE//$SRC_DIR\//}, skipping."
-        return 1
     fi
 
     if ! IS_VALID_PARTITION_NAME "$PARTITION"; then
@@ -477,7 +476,6 @@ ADD_IF_EXISTS()
             EVAL "cat \"$SOURCE_FILE.\"[0-9][0-9] > \"$TARGET_FILE\"" || exit 1
         else
             LOGW "File not found: ${SOURCE_FILE//$SRC_DIR\//}, skipping."
-            return 1
         fi
     else
         LOG "- Adding $(sed -e "s|$WORK_DIR||" -e "s|/\.||" <<< "$TARGET_FILE") from ${SOURCE//$SRC_DIR\//}"
