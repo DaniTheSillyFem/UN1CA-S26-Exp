@@ -189,7 +189,6 @@ system/lib64/libndk.vexfwk.samsung.so
 system/lib64/libruntime.vexfwk.samsung.so
 system/lib64/libsdk-v2-jni.vexfwk.samsung.so
 system/lib64/vexfwk_service_aidl-ndk.so
-system/lib/libandroid.vexfwk.samsung.so
 system/lib/libcommon-jni.vexfwk.samsung.so
 system/lib/libimgproc.vexfwk.samsung.so
 system/lib/libmetadata.vexfwk.samsung.so
