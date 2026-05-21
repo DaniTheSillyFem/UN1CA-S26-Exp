@@ -68,6 +68,16 @@ ADD_JAR_TO_CLASSPATH()
 }
 # ]
 
+ADD_IF_EXISTS()
+{
+    local file="$1"
+    if [ -f "$SOURCE_FIRMWARE/$file" ]; then
+        ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$file"
+    else
+        echo "Skipping missing $file"
+    fi
+}
+
 if [[ "$SOURCE_EXTRA_FIRMWARES" != "SM-A346"* ]]; then
     LOGE "- Unsupported firmware for MediaTek Compatibility Module"
     exit 1
@@ -180,7 +190,7 @@ ADD_TO_WORK_DIR "$MODEL/$REGION" "system" "system/bin"
 ADD_TO_WORK_DIR "$MODEL/$REGION" "system" "system/lib64"
 ADD_TO_WORK_DIR "$MODEL/$REGION" "system" "system/lib"
 
-VEX_LIBS="
+VEX_64_LIBS="
 system/lib64/libandroid.vexfwk.samsung.so
 system/lib64/libcommon-jni.vexfwk.samsung.so
 system/lib64/libimgproc.vexfwk.samsung.so
@@ -189,6 +199,13 @@ system/lib64/libndk.vexfwk.samsung.so
 system/lib64/libruntime.vexfwk.samsung.so
 system/lib64/libsdk-v2-jni.vexfwk.samsung.so
 system/lib64/vexfwk_service_aidl-ndk.so
+"
+
+for lib in $VEX_64_LIBS; do
+    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$lib"
+done
+
+VEX_32_LIBS="
 system/lib/libcommon-jni.vexfwk.samsung.so
 system/lib/libimgproc.vexfwk.samsung.so
 system/lib/libmetadata.vexfwk.samsung.so
@@ -197,8 +214,9 @@ system/lib/libruntime.vexfwk.samsung.so
 system/lib/libsdk-v2-jni.vexfwk.samsung.so
 system/lib/vexfwk_service_aidl-ndk.so
 "
-for lib in $VEX_LIBS; do
-    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$lib"
+
+for lib in $VEX_32_LIBS; do
+    ADD_IF_EXISTS "$lib"
 done
 
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "system/lib64/libsec_camerax_util_jni.camera.samsung.so"
