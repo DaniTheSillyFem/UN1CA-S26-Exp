@@ -70,9 +70,11 @@ ADD_JAR_TO_CLASSPATH()
 
 ADD_IF_EXISTS()
 {
-    local file="$1"
+    local fw_loc="$1"
+    local partition="$2"
+    local file="$3"
     if [ -f "$SOURCE_FIRMWARE/$file" ]; then
-        ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$file"
+        ADD_TO_WORK_DIR "$fw_loc" "$partition" "$file"
     else
         LOGW "File or lib named \"$file\" is missing, Skipping."
     fi
@@ -202,7 +204,7 @@ system/lib64/vexfwk_service_aidl-ndk.so
 "
 
 for lib in $VEX_64_LIBS; do
-    ADD_IF_EXISTS "$lib"
+    ADD_IF_EXISTS "$SOURCE_FIRMWARE" "system" "$lib"
 done
 
 VEX_32_LIBS="
@@ -217,7 +219,7 @@ system/lib/vexfwk_service_aidl-ndk.so
 "
 
 for lib in $VEX_32_LIBS; do
-    ADD_IF_EXISTS "$lib"
+    ADD_IF_EXISTS "$SOURCE_FIRMWARE" "system" "$lib"
 done
 
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "system/lib64/libsec_camerax_util_jni.camera.samsung.so"
