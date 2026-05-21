@@ -74,7 +74,7 @@ ADD_IF_EXISTS()
     if [ -f "$SOURCE_FIRMWARE/$file" ]; then
         ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$file"
     else
-        LOGW "File or lib named \"$file\" missing, Skipping."
+        LOGW "File or lib named \"$file\" is missing, Skipping."
     fi
 }
 
@@ -202,7 +202,7 @@ system/lib64/vexfwk_service_aidl-ndk.so
 "
 
 for lib in $VEX_64_LIBS; do
-    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system" "$lib"
+    ADD_IF_EXISTS "$lib"
 done
 
 VEX_32_LIBS="
