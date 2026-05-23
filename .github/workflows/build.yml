@@ -77,7 +77,14 @@ jobs:
       - name: Build ROM
         run: |
           source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/make_rom.sh -z
+          ./scripts/make_rom.sh -z || true
+
+      - name: Upload failed smali
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SemDisplayQualityFeature-smali
+          path: out/target/a34x/apktool/system/framework/framework.jar/smali_classes6/com/samsung/android/displayquality/SemDisplayQualityFeature.smali
 
       - name: Upload to PixelDrain
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
