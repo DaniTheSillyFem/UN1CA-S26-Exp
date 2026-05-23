@@ -7,7 +7,7 @@ index 250577e..279d7c5 100644
  .field public static final blacklist DP_RATIO_SUPPORT:Z
  
 -.field private static final blacklist DQ_SVC_FEATURE:Ljava/lang/String; = "LSI,dp_debug"
-+.field private static final blacklist DQ_SVC_FEATURE:Ljava/lang/String; = "MTTK"
++.field private static final blacklist DQ_SVC_FEATURE:Ljava/lang/String; = "MTK"
  
  .field public static final blacklist ENABLED:Z = true
  
