@@ -57,12 +57,12 @@ index e4780961..c278b696 100644
  
      if-nez v1, :cond_1
  
--    move v0, v2
+-    move v0, v3
 -
      goto :goto_1
  
      :cond_1
--    move v0, v3
+-    move v0, v2
 +    move v2, v3
  
      :goto_1
@@ -73,12 +73,12 @@ index e4780961..c278b696 100644
  
 @@ -97,7 +91,7 @@
  
-     sput-boolean v3, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_RATIO_SUPPORT:Z
+     sput-boolean v2, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_RATIO_SUPPORT:Z
  
 -    sput-boolean v2, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_DEBUG_SUPPORT:Z
 +    sput-boolean v3, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_DEBUG_SUPPORT:Z
  
-     sput-boolean v3, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_BACKOFF_SUPPORT:Z
+     sput-boolean v2, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_BACKOFF_SUPPORT:Z
  
 -- 
 2.48.1
