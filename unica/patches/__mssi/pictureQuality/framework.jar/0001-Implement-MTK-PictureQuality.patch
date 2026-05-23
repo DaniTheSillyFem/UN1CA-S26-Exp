@@ -71,14 +71,5 @@ index e4780961..c278b696 100644
  
      sput-boolean v3, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->ADAPTIVE_SYNC_SUPPORT:Z
  
-@@ -97,7 +91,7 @@
- 
-     sput-boolean v2, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_RATIO_SUPPORT:Z
- 
--    sput-boolean v2, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_DEBUG_SUPPORT:Z
-+    sput-boolean v3, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_DEBUG_SUPPORT:Z
- 
-     sput-boolean v2, Lcom/samsung/android/displayquality/SemDisplayQualityFeature;->DP_BACKOFF_SUPPORT:Z
- 
 -- 
 2.48.1
